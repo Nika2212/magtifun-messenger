@@ -1,0 +1,73 @@
+@font-face {
+  font-family: 'Arial-Geo';
+  src: url('../font/arial_geo.ttf');
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'Roboto-Geo-Regular';
+  src: url('../font/Roboto_GeoRegular.ttf');
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'Vag';
+  src: url('../font/VAG-Rounded-Bold.ttf');
+  font-style: normal;
+  font-weight: normal;
+}
+
+.typo-primary {
+  font-family: 'Roboto-Geo-Regular', sans-serif;
+}
+.typo-secondary {
+  font-family: 'Arial-Geo', sans-serif;
+}
+.typo-thirdly {
+  font-family: 'Vag', sans-serif;
+}
+
+.typo-xxs {
+  font-size: 9px !important;
+}
+.typo-xs {
+  font-size: 12px !important;
+}
+.typo-sm {
+  font-size: 14px !important;
+}
+.typo-md {
+  font-size: 18px !important;
+}
+.typo-lg {
+  font-size: 24px !important;
+}
+.typo-xl {
+  font-size: 30px !important;
+}
+.typo-xxl {
+  font-size: 36px !important;
+}
+
+.typo-upper {
+  text-transform: uppercase !important;
+}
+.typo-capital {
+  text-transform: capitalize !important;
+}
+
+.typo-align-left {
+  text-align: left !important;
+}
+.typo-align-center {
+  text-align: center !important;
+}
+.typo-align-right {
+   text-align: right !important;
+}
+
+.typo-overflow {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}

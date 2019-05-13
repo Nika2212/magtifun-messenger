@@ -1,0 +1,21 @@
+.notification {
+  padding: 20px 15px;
+
+  left: 0;
+  top: 0;
+
+  transform: translateY(-80px);
+
+  min-height: 80px;
+
+  border-bottom: 1px solid #333;
+}
+.notification .notification-icon {
+  align-self: flex-start;
+}
+.notification .close-icon {
+  align-self: flex-start;
+}
+.notification p {
+  margin-left: 10px;
+}

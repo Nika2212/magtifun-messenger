@@ -1,0 +1,32 @@
+.grid-container {
+  margin-left: auto !important;
+  margin-right: auto !important;
+
+  width: 1170px !important;
+}
+
+@media (min-width: 320px) {
+  .grid-container {
+    max-width: 100%;
+  }
+}
+@media (min-width: 576px) {
+  .grid-container {
+    max-width: 540px;
+  }
+}
+@media (min-width: 768px) {
+  .grid-container {
+    max-width: 720px;
+  }
+}
+@media (min-width: 992px) {
+  .grid-container {
+    max-width: 960px;
+  }
+}
+@media (min-width: 1200px) {
+  .grid-container {
+    max-width: 1170px;
+  }
+}

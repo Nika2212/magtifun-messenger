@@ -1,0 +1,36 @@
+.bg-primary-red {
+    background-color: #e52525;
+}
+.bg-secondary-red {
+    background-color: #c62828;
+}
+.bg-primary-black {
+    background-color: #000;
+}
+.bg-secondary-black {
+    background-color: #222;
+}
+.bg-primary-white {
+    background-color: #ffffff;
+}
+.bg-secondary-white {
+    background-color: #fafafa;
+}
+
+.color-primary-white {
+    color: #ffffff;
+}
+.color-secondary-white {
+    color: #fafafa;
+}
+.color-primary-black {
+    color: #000;
+}
+.color-secondary-black {
+    color: #222;
+}
+
+.gradient-primary-red {
+    background: rgb(229,37,37);
+    background: linear-gradient(0deg, rgba(229,37,37,1) 0%, rgba(200,32,32,1) 50%, rgba(170,27,27,1) 75%, rgba(170,27,27,1) 100%);
+}

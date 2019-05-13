@@ -1,0 +1,171 @@
+.d-flex {
+  display: flex !important;
+}
+.d-block {
+  display: block !important;
+}
+.d-inline {
+  display: inline !important;
+}
+.d-inline-block {
+  display: inline-block !important;
+}
+.d-none {
+  display: none !important;
+}
+
+.v-visible {
+  visibility: visible !important;
+}
+.v-hidden {
+  visibility: hidden !important;
+}
+
+.p-relative {
+  position: relative !important;
+}
+.p-absolute {
+  position: absolute !important;
+}
+.p-static {
+  position: static !important;
+}
+.p-fixed {
+  position: fixed !important;
+}
+.o-visible {
+  overflow: visible !important;
+}
+.o-hidden {
+  overflow: hidden !important;
+}
+
+.w-100 {
+  width: 100% !important;
+}
+.w-75 {
+  width: 75% !important;
+}
+.w-50 {
+  width: 50% !important;
+}
+.w-25 {
+  width: 25% !important;
+}
+.h-100 {
+  height: 100% !important;
+}
+.h-75 {
+  height: 75% !important;
+}
+.h-50 {
+  height: 50% !important;
+}
+.h-25 {
+  height: 25% !important;
+}
+
+.content-row-start {
+  display: flex;
+  flex-direction: row !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+}
+.content-row-center {
+  display: flex;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+.content-row-end {
+  display: flex;
+  flex-direction: row !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
+}
+.content-column-start {
+  display: flex;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+}
+.content-column-center {
+  display: flex;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+.content-column-end {
+  display: flex;
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
+}
+.content-align-start {
+  align-items: flex-start !important;
+}
+.content-align-center {
+  align-items: center !important;
+}
+.content-align-end {
+  align-items: flex-end !important;
+}
+
+.self-start {
+  margin-left: 0;
+  margin-right: auto !important;
+}
+.self-center {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.self-end {
+  margin-left: auto !important;
+  margin-right: 0;
+}
+
+.animation-run {
+  animation-play-state: running !important;
+}
+.animation-pause {
+  animation-play-state: paused !important;
+}
+.animation-stop {
+  animation-name: none !important;
+}
+
+.object-ico {
+  border-radius: 100% !important;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.object-180 {
+  transform: rotate(180deg);
+}
+.object-fullscreen {
+  width: 100%;
+  height: 100vh;
+
+  overflow: hidden;
+}
+
+.clickable-true {
+  cursor: pointer !important;
+}
+.clickable-false {
+  cursor: default !important;
+}
+.selectable-true {
+  user-select: inherit !important;
+}
+.selectable-false {
+  user-select: none !important;
+}
+.draggable-true {
+  -webkit-user-drag: auto !important;
+}
+.draggable-false {
+  -webkit-user-drag: none !important;
+}

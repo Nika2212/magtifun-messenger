@@ -1,0 +1,46 @@
+* {
+  padding: 0;
+  margin: 0;
+
+  list-style: none;
+  text-decoration: none;
+
+  box-sizing: border-box;
+}
+a {
+  color: inherit;
+}
+a:visited {
+  color: inherit;
+
+}
+a:hover {
+  text-decoration: none;
+}
+p {
+  margin: 0;
+  padding: 0;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+input {
+  border: none;
+  outline: none;
+}
+button {
+  outline: none;
+  border: none;
+}
+html, body {
+  width: 100%;
+  min-height: 100vh;
+}
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}

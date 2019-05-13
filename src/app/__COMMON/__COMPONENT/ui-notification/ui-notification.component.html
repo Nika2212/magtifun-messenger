@@ -1,0 +1,6 @@
+<div #notificationReference class="notification ui-transition-standard w-100 p-absolute bg-secondary-black content-row-start">
+  <img [ngClass]="{'d-none' : notification && notification.notificationType === 'SUCCESS'}" class="notification-icon ui-icon-md" [src]="ASSETS.IMAGE.ICON.ALERT" alt="">
+  <img [ngClass]="{'d-none' : notification && notification.notificationType === 'ERROR'}" class="notification-icon ui-icon-md" [src]="ASSETS.IMAGE.ICON.CHECK" alt="">
+  <p class="typo-primary typo-sm color-secondary-white">{{ notification ? notification.notificationMessage : ''}}</p>
+  <img (click)="notificationToggle(false)" [src]="ASSETS.IMAGE.ICON.CLOSE" class="close-icon self-end ui-icon-sm" alt="">
+</div>
