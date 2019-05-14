@@ -5,19 +5,25 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
+import { UISvgModule } from '../__COMMON/__COMPONENT/ui-svg/ui-svg.module';
+import { UiNotificationModule } from '../__COMMON/__COMPONENT/ui-notification/ui-notification.module';
+import { ContactListModule } from './contact-list/contact-list.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: HomePage
-      }
-    ])
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        ContactListModule,
+        RouterModule.forChild([
+            {
+                path: '',
+                component: HomePage
+            }
+        ]),
+        UISvgModule,
+        UiNotificationModule
+    ],
   declarations: [HomePage]
 })
 export class HomePageModule {}

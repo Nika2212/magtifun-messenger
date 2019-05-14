@@ -1,0 +1,22 @@
+<ui-notification></ui-notification>
+<div class="auth ui-page-content gradient-primary-red">
+  <form (ngSubmit)="authSignInMethod(form)" #form="ngForm" class="w-100 content-column-center">
+    <div class="input-box w-100 content-row-start bg-secondary-black">
+      <img class="ui-icon-sm" [src]="ASSETS.IMAGE.ICON.USER" alt="">
+      <input [disabled]="inPageProcessState" name="username" ngModel class="typo-primary color-secondary-white typo-sm typo-upper" type="number" placeholder="მომხმარებელი">
+    </div>
+    <div class="input-box crutch w-100 content-row-start bg-secondary-black">
+      <img class="ui-icon-sm" [src]="ASSETS.IMAGE.ICON.PASSWORD" alt="">
+      <input [disabled]="inPageProcessState" name="password" ngModel class="typo-primary color-secondary-white typo-sm" [type]="passwordVisibilityState ? 'text' : 'password'" placeholder="პაროლი">
+      <div (click)="togglePasswordVisibilityStateMethod()" class="password-visibility content-row-center" [ngStyle]="{'background-color' : passwordVisibilityState ? 'rgba(0,0,0,0.3)' : 'transparent'}">
+        <ui-svg [SVG_PATH_ACTIVE]="ASSETS.IMAGE.ICON.EYE_SELECTED" [SVG_PATH_INACTIVE]="ASSETS.IMAGE.ICON.EYE" [SVG_STATE]="passwordVisibilityState" [SVG_CLASS]="'ui-icon-sm'"></ui-svg>
+      </div>
+    </div>
+    <div class="action-block w-100 content-row-end">
+      <button [disabled]="inPageProcessState" [ngClass]="{'loading' : inPageProcessState}" class="bg-secondary-white ui-transition-standard content-row-start self-end" type="submit">
+        <span class="bg-primary-red content-row-center"><img class="ui-icon-sm" [src]="inPageProcessState ? ASSETS.IMAGE.ICON.LOADING : ASSETS.IMAGE.ICON.SIGN_IN" alt=""></span>
+        <span class="typo-primary color-secondary-black">შესვლა</span>
+      </button>
+    </div>
+  </form>
+</div>

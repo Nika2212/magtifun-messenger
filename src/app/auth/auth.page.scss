@@ -1,0 +1,81 @@
+.auth form {
+  margin-top: auto;
+  margin-bottom: 60px;
+}
+.auth form .input-box {
+  padding-left: 15px;
+  padding-right: 15px;
+
+  height: 60px;
+
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
+}
+.auth form .input-box input {
+  margin-left: 10px;
+
+  flex: 1;
+  height: 40px;
+
+  background-color: transparent;
+
+  color: #fafafa;
+}
+.auth form .crutch {
+  padding-right: 0;
+
+  border-top: none;
+}
+.auth form .crutch .password-visibility {
+  padding-left: 15px;
+  padding-right: 15px;
+  height: 100%;
+}
+.auth form .action-block {
+  margin-top: 30px;
+
+  padding-left: 15px;
+}
+.auth form button {
+  width: 180px;
+  height: 60px;
+
+  border-bottom-left-radius: 60px;
+  border-top-left-radius: 60px;
+
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+.auth form button span:first-child {
+  margin-left: 2px;
+
+  width: 56px;
+  height: 56px;
+
+  flex-shrink: 0;
+
+  border-radius: 100%;
+
+  box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+}
+.auth form button span:last-child {
+  margin-left: 10px;
+
+  font-weight: 500;
+  font-size: 16px;
+
+  flex-shrink: 0;
+
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+}
+.auth form button.loading {
+  transform: translateX(115px);
+}
+.auth form button.loading span:first-child {
+  animation-name: spinning;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-play-state: running;
+  animation-timing-function: linear;
+  animation-duration: .15s;
+  animation-direction: normal;
+}

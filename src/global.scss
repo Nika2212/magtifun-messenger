@@ -1,4 +1,3 @@
-// http://ionicframework.com/docs/theming/
 @import '~@ionic/angular/css/core.css';
 @import '~@ionic/angular/css/normalize.css';
 @import '~@ionic/angular/css/structure.css';
@@ -9,3 +8,10 @@
 @import '~@ionic/angular/css/text-alignment.css';
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
+@import 'assets/style/_grid.css';
+@import 'assets/style/_reset.css';
+@import 'assets/style/_utils.css';
+@import 'assets/style/palette.css';
+@import 'assets/style/typography.css';
+@import 'assets/style/ui.css';
+@import 'assets/style/animation.css';

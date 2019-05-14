@@ -1,14 +1,31 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
-</ion-content>
+<ui-notification></ui-notification>
+<div class="home ui-page-content bg-secondary-black">
+  <header class="home-header p-relative content-row-start w-100 bg-secondary-red">
+    <div [ngClass]="{'d-none' : homeHeaderSearchMode}" class="home-header-idle w-100 h-100 content-row-start">
+      <p class="brand typo-thirdly color-secondary-white">brand</p>
+      <span class="search-block h-100 self-end content-row-center" (pointerup)="homeHeaderSearchModeToggleMethod()">
+        <img class="search-icon" [src]="ASSETS.IMAGE.ICON.SEARCH" alt="">
+      </span>
+    </div>
+    <div [ngClass]="{'d-none' : !homeHeaderSearchMode}" class="home-header-search w-100 h-100 content-row-start">
+      <div class="back-btn-box h-100 content-row-center" (click)="homeHeaderSearchModeToggleMethod()">
+        <img class="ui-icon-lg" [src]="ASSETS.IMAGE.ICON.LONG_ARROW_LEFT" alt="">
+      </div>
+      <input #homeHeaderSearchInputReference
+             class="typo-secondary typo-md color-secondary-white"
+             type="text"
+             placeholder="ძებნა"
+             autofocus
+             [(ngModel)]="homeHeaderSearchValue">
+    </div>
+  </header>
+  <main class="home-body bg-secondary-black"></main>
+  <footer class="home-footer p-relative content-row-start w-100 bg-secondary-red">
+    <div (pointerup)="homeChildPageSelectMethod(page)" *ngFor="let page of homeChildPagesArray" class="icon content-row-center h-100">
+      <ui-svg [SVG_CLASS]="'ui-icon-lg'"
+              [SVG_STATE]="page.id === homeChildPageSelected.id"
+              [SVG_PATH_ACTIVE]="page.iconActive"
+              [SVG_PATH_INACTIVE]="page.iconPassive"></ui-svg>
+    </div>
+  </footer>
+</div>

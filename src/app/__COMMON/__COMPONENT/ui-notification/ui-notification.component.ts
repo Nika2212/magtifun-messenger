@@ -3,7 +3,7 @@ import { RESOURCE } from '../../../resource';
 import { UINotificationModel } from './ui-notification.model';
 import { Subscription } from 'rxjs';
 import { UINotificationService } from './ui-notification.service';
-import {VibrationService} from '../../_service/_native/vibration.service';
+import {DeviceVibrationService} from '../../__SERVICE/__NATIVE/device-vibration.service';
 
 @Component({
   selector: 'ui-notification',
@@ -20,13 +20,13 @@ export class UiNotificationComponent implements OnInit {
   private notificationSubscription: Subscription;
 
   constructor(private notificationService: UINotificationService,
-              private vibrationService: VibrationService) { }
+              private deviceVibrationService: DeviceVibrationService) { }
 
   public ngOnInit(): void {
     this.notification = new UINotificationModel(null, null, null);
     this.notificationSubscription = this.notificationService.getNotification().subscribe(notification => {
       if (!this.expanded) {
-        this.vibrationService.notificationVibration();
+        this.deviceVibrationService.deviceVibrationErrorMethod();
         this.notification = notification;
         this.notificationToggle(true);
       }
