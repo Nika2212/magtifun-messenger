@@ -16,11 +16,12 @@ import { UISvgModule } from './__COMMON/__COMPONENT/ui-svg/ui-svg.module';
 import { Contacts } from '@ionic-native/contacts/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, FormsModule, UiNotificationModule, UISvgModule, IonicStorageModule.forRoot(), IonicModule.forRoot(), AppRoutingModule],
+  imports: [BrowserModule, BrowserAnimationsModule, FormsModule, UiNotificationModule, UISvgModule, IonicStorageModule.forRoot(), IonicModule.forRoot(), AppRoutingModule],
   providers: [
     HTTP,
     AndroidPermissions,

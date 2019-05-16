@@ -12,7 +12,9 @@ export class DeviceVibrationService {
         this.vibration.vibrate(120);
     }
     public deviceVibrationSetFavoriteMethod(): void {
-        this.vibration.vibrate([20, 80, 20]);
+        setTimeout(() => {
+            this.vibration.vibrate([20, 145, 20]);
+        }, 115);
     }
     public deviceVibrationRemoveFavoriteMethod(): void {
         this.vibration.vibrate(20);

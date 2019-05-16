@@ -16,10 +16,21 @@
              type="text"
              placeholder="ძებნა"
              autofocus
-             [(ngModel)]="homeHeaderSearchValue">
+             [(ngModel)]="homeHeaderSearchValue"
+             (blur)="homeOnInputBlur()">
     </div>
   </header>
-  <main class="home-body bg-secondary-black"></main>
+  <main class="home-body bg-secondary-black">
+    <div #carouselRailReference class="carousel-rail content-row-start content-align-start h-100">
+      <app-contact-list [setContactsArray]="homeClientContactsArray"
+                        [contentLoaded]="homeContactListContentLoaded"
+                        [searchMode]="homeHeaderSearchMode"
+                        [setSearchValue]="homeHeaderSearchValue"
+                        [sectionBodyHeight]="homeBodyHeight"
+                        (contentLoadedEvent)="homeContactListContentLoadMethod($event)">
+      </app-contact-list>
+    </div>
+  </main>
   <footer class="home-footer p-relative content-row-start w-100 bg-secondary-red">
     <div (pointerup)="homeChildPageSelectMethod(page)" *ngFor="let page of homeChildPagesArray" class="icon content-row-center h-100">
       <ui-svg [SVG_CLASS]="'ui-icon-lg'"

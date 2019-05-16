@@ -1,0 +1,150 @@
+.contact-list {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.skeleton-list .heading {
+  padding-left: 15px;
+  padding-right: 15px;
+
+  height: 45px;
+
+  background-color: #252525;
+
+  border-bottom: 1px solid #333;
+}
+.skeleton-list .heading span {
+  width: 120px;
+  height: 18px;
+
+  background-color: #333;
+  border-radius: 3px;
+}
+.skeleton-list .heading img {
+  animation-name: spinning;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-play-state: running;
+  animation-timing-function: linear;
+  animation-duration: .15s;
+  animation-direction: normal;
+}
+.skeleton-list .skeleton {
+  padding-left: 15px;
+  padding-right: 15px;
+
+  height: 70px;
+
+  border-bottom: 1px solid #333;
+}
+.skeleton-list .skeleton .skeleton-circle {
+  width: 48px;
+  height: 48px;
+
+  border-radius: 100%;
+  background-color: #333;
+}
+.skeleton-list .skeleton .skeleton-information {
+  margin-left: 15px;
+}
+.skeleton-list .skeleton .skeleton-information .skeleton-name {
+  width: 90px;
+  height: 18px;
+
+  border-radius: 3px;
+  background-color: #333;
+}
+.skeleton-list .skeleton .skeleton-information .skeleton-number {
+  margin-top: 5px;
+
+  width: 120px;
+  height: 18px;
+
+  border-radius: 3px;
+  background-color: #333;
+}
+.all-contact-list .heading, .favorite-contact-list .heading {
+  padding-left: 15px;
+  padding-right: 0;
+
+  height: 45px;
+
+  background-color: #252525;
+
+  border-bottom: 1px solid #333;
+}
+.contact-wrapper {
+  will-change: transform;
+  transform-style: preserve-3d;
+
+  overflow: hidden;
+}
+.contact {
+  padding-left: 15px;
+  padding-right: 0;
+
+  height: 70px;
+
+  border-bottom: 1px solid #333;
+
+  background-color: rgba(0,0,0,0.1);
+
+  will-change: transform;
+  transform: rotateX(0);
+  transform-origin: left top;
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+}
+.contact .contact-circle {
+  padding-top: -1px;
+
+  width: 48px;
+  height: 48px;
+
+  border-radius: 100%;
+  border: 1px solid #333;
+
+  background-color: #232323;
+
+  color: #fafafa;
+
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+}
+.contact .contact-information {
+  margin-left: 15px;
+}
+.contact .contact-information .contact-name {
+  color: #e7e7e7;
+}
+.contact .contact-information .contact-number {
+  margin-top: 5px;
+  color: #e7e7e7;
+}
+.contact .contact-favorite {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+.contact .contact-favorite .heart {
+  width: 20px;
+  height: 20px;
+
+  fill: #333;
+}
+.contact .contact-favorite .heart-animate {
+
+  animation-name: heart-beat, heart-color;
+  animation-direction: alternate;
+  animation-duration: .5s;
+  animation-timing-function: ease-in-out;
+  animation-play-state: running;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+.contact .contact-favorite .heart-animate-end {
+  animation-name: heart-break;
+  animation-direction: alternate;
+  animation-duration: .3s;
+  animation-timing-function: ease-in-out;
+  animation-play-state: running;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
