@@ -1,5 +1,6 @@
 export class ContactModel {
     public decoratedPhoneNumber: string;
+    public decoratedFullName: string;
 
     constructor(
         public id: string,
@@ -10,10 +11,15 @@ export class ContactModel {
     ) {
         this.formatPhoneNumberMethod();
         this.decoratePhoneNumberMethod();
+        this.getContactFullName();
     }
 
-    public getContactFullName(): string {
-        return this.firstName + ' ' + (this.lastName ? this.lastName : '');
+    public getContactFullName(): void {
+        if (this.firstName) {
+            this.decoratedFullName = this.firstName + (this.lastName ? ' ' + this.lastName : '');
+        } else {
+            this.decoratedFullName = this.decoratedPhoneNumber;
+        }
     }
     private formatPhoneNumberMethod(): void {
         if (this.formattedPhoneNumber) {

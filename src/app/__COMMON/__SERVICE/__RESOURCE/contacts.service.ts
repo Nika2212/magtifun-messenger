@@ -1,7 +1,8 @@
-import {Injectable} from '@angular/core';
-import {Contacts} from '@ionic-native/contacts/ngx';
-import {ContactModel} from '../../__MODEL/contact.model';
-import {Storage} from '@ionic/storage';
+import { Injectable } from '@angular/core';
+import { Contacts } from '@ionic-native/contacts/ngx';
+import { ContactModel } from '../../__MODEL/contact.model';
+import { Storage } from '@ionic/storage';
+import * as faker from 'faker';
 
 @Injectable({
     providedIn: 'root'
@@ -36,14 +37,8 @@ export class ContactsService {
                 }
             });
             return contactsArray;
-        } catch (e) {
-            const contactsArray: ContactModel[] = [];
-            for (let i = 0; i < 10; i++) {
-                contactsArray.push(
-                    new ContactModel(i.toString(), 'Contact', i.toString(), false, '555000000' )
-                );
-            }
-            return contactsArray;
+        } catch (error) {
+            return this.getFakeContacts(30);
         }
     }
     public async contactsSetFavoriteMethod(id: string): Promise<void> {
@@ -61,5 +56,22 @@ export class ContactsService {
         favoriteList = JSON.parse(favoriteList);
         favoriteList.splice(favoriteList.indexOf(id), 1);
         await this.storage.set('favorite_contacts', JSON.stringify(favoriteList));
+    }
+
+    private getFakeContacts(quantity: number): ContactModel[] {
+        const contactArray: ContactModel[] = [];
+
+        for (let i = 0; i < quantity; i++) {
+            const newContact = new ContactModel(
+                (Math.floor(Math.random() * 9999)).toString(),
+                faker.name.firstName(),
+                faker.name.lastName(),
+                false,
+                (Math.floor(Math.random() * 599999999) + 551000000).toString()
+            );
+            contactArray.push(newContact);
+        }
+
+        return contactArray;
     }
 }

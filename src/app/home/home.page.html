@@ -2,7 +2,7 @@
 <div class="home ui-page-content bg-secondary-black">
   <header class="home-header p-relative content-row-start w-100 bg-secondary-red">
     <div [ngClass]="{'d-none' : homeHeaderSearchMode}" class="home-header-idle w-100 h-100 content-row-start">
-      <p class="brand typo-thirdly color-secondary-white">brand</p>
+      <p class="brand typo-thirdly color-secondary-white">magtifun<sup>α</sup></p>
       <span class="search-block h-100 self-end content-row-center" (pointerup)="homeHeaderSearchModeToggleMethod()">
         <img class="search-icon" [src]="ASSETS.IMAGE.ICON.SEARCH" alt="">
       </span>
@@ -22,6 +22,11 @@
   </header>
   <main class="home-body bg-secondary-black">
     <div #carouselRailReference class="carousel-rail content-row-start content-align-start h-100">
+      <app-message-list [sectionBodyHeight]="homeBodyHeight"
+                        [messagesArray]="homeClientMessagesArray"
+                        [contentLoaded]="homeMessageListContentLoaded"
+                        (contentLoadedEvent)="homeMessageListContentLoadMethod($event)">
+      </app-message-list>
       <app-contact-list [setContactsArray]="homeClientContactsArray"
                         [contentLoaded]="homeContactListContentLoaded"
                         [searchMode]="homeHeaderSearchMode"

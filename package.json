@@ -30,6 +30,7 @@
     "@ionic-native/vibration": "^5.5.1",
     "@ionic/angular": "^4.1.0",
     "@ionic/storage": "^2.2.0",
+    "@types/faker": "^4.1.5",
     "cordova-android": "8.0.0",
     "cordova-plugin-advanced-http": "2.0.9",
     "cordova-plugin-android-permissions": "1.0.0",
@@ -39,6 +40,7 @@
     "cordova-plugin-vibration": "3.1.0",
     "cordova-sqlite-storage": "3.2.0",
     "core-js": "^2.5.4",
+    "faker": "^4.1.0",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.29"

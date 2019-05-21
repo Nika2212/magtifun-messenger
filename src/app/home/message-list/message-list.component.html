@@ -1,0 +1,94 @@
+<div #messageListReference class="message-list p-relative content-column-start">
+    <div [ngClass]="{'d-none' : contentLoaded}" class="skeleton-list w-100 content-column-start">
+        <div class="heading w-100 content-row-start">
+            <span></span>
+            <img class="loading ui-icon-sm self-end"
+                 src="../../../assets/image/icon/spinner-third-red.svg" alt="">
+        </div>
+        <div class="skeleton w-100 bg-secondary-black content-row-start">
+            <span class="skeleton-circle"></span>
+            <div class="skeleton-information content-column-start content-align-start">
+                <span class="skeleton-name"></span>
+                <span class="skeleton-body"></span>
+            </div>
+            <div class="skeleton-time self-end"></div>
+        </div>
+        <div class="skeleton w-100 bg-secondary-black content-row-start">
+            <span class="skeleton-circle"></span>
+            <div class="skeleton-information content-column-start content-align-start">
+                <span class="skeleton-name"></span>
+                <span class="skeleton-body"></span>
+            </div>
+            <div class="skeleton-time self-end"></div>
+        </div>
+        <div class="skeleton w-100 bg-secondary-black content-row-start">
+            <span class="skeleton-circle"></span>
+            <div class="skeleton-information content-column-start content-align-start">
+                <span class="skeleton-name"></span>
+                <span class="skeleton-body"></span>
+            </div>
+            <div class="skeleton-time self-end"></div>
+        </div>
+        <div class="skeleton w-100 bg-secondary-black content-row-start">
+            <span class="skeleton-circle"></span>
+            <div class="skeleton-information content-column-start content-align-start">
+                <span class="skeleton-name"></span>
+                <span class="skeleton-body"></span>
+            </div>
+            <div class="skeleton-time self-end"></div>
+        </div>
+        <div class="skeleton w-100 bg-secondary-black content-row-start">
+            <span class="skeleton-circle"></span>
+            <div class="skeleton-information content-column-start content-align-start">
+                <span class="skeleton-name"></span>
+                <span class="skeleton-body"></span>
+            </div>
+            <div class="skeleton-time self-end"></div>
+        </div>
+        <div class="skeleton w-100 bg-secondary-black content-row-start">
+            <span class="skeleton-circle"></span>
+            <div class="skeleton-information content-column-start content-align-start">
+                <span class="skeleton-name"></span>
+                <span class="skeleton-body"></span>
+            </div>
+            <div class="skeleton-time self-end"></div>
+        </div>
+        <div class="skeleton w-100 bg-secondary-black content-row-start">
+            <span class="skeleton-circle"></span>
+            <div class="skeleton-information content-column-start content-align-start">
+                <span class="skeleton-name"></span>
+                <span class="skeleton-body"></span>
+            </div>
+            <div class="skeleton-time self-end"></div>
+        </div>
+        <div class="skeleton w-100 bg-secondary-black content-row-start">
+            <span class="skeleton-circle"></span>
+            <div class="skeleton-information content-column-start content-align-start">
+                <span class="skeleton-name"></span>
+                <span class="skeleton-body"></span>
+            </div>
+            <div class="skeleton-time self-end"></div>
+        </div>
+        <div class="skeleton w-100 bg-secondary-black content-row-start">
+            <span class="skeleton-circle"></span>
+            <div class="skeleton-information content-column-start content-align-start">
+                <span class="skeleton-name"></span>
+                <span class="skeleton-body"></span>
+            </div>
+            <div class="skeleton-time self-end"></div>
+        </div>
+    </div>
+    <div [ngClass]="{'d-none' : !contentLoaded}" class="message-list w-100 content-column-start">
+        <p class="heading w-100 content-column-center content-align-start typo-primary typo-sm color-secondary-white">შეტყობინებები</p>
+        <div #messageArrayReference *ngFor="let message of messagesArray" class="message w-100 bg-secondary-black content-row-start">
+            <span class="message-circle typo-capital content-row-center typo-primary typo-lg"></span>
+            <div class="message-information content-column-center content-align-start">
+                <p class="message-contact typo-fourthly typo-md color-secondary-white"></p>
+            </div>
+            <span class="message-time typo-thirdly color-secondary-white typo-sm self-end"></span>
+        </div>
+    </div>
+    <div class="message-send-btn content-row-center">
+        <img [src]="ASSETS.IMAGE.ICON.PAPER_PLANE" alt="">
+    </div>
+</div>

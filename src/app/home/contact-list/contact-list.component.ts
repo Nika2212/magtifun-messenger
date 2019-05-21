@@ -1,26 +1,31 @@
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
-  ElementRef, EventEmitter,
+  ElementRef,
+  EventEmitter,
   Input,
-  OnInit, Output,
-  QueryList,
+  OnInit,
+  Output,
+  QueryList, Renderer2,
   ViewChild,
   ViewChildren
 } from '@angular/core';
 import { ContactModel } from '../../__COMMON/__MODEL/contact.model';
 import { ContactsService } from '../../__COMMON/__SERVICE/__RESOURCE/contacts.service';
-import {contactListAnimation} from './contact-list.animation';
-import {DeviceVibrationService} from '../../__COMMON/__SERVICE/__NATIVE/device-vibration.service';
+import { contactListAnimation } from './contact-list.animation';
+import { DeviceVibrationService } from '../../__COMMON/__SERVICE/__NATIVE/device-vibration.service';
 
 @Component({
   selector: 'app-contact-list',
   templateUrl: './contact-list.component.html',
   styleUrls: ['./contact-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: contactListAnimation
 })
 export class ContactListComponent implements OnInit, AfterViewInit {
   @ViewChild('contactListReference') public contactListReference: ElementRef;
+  @ViewChild('favoriteContactWrapper') public favoriteContactWrapper: ElementRef;
   @ViewChildren('contactsArrayReference') public contactsArrayReference: QueryList<any>;
   @Input() public sectionBodyHeight: number = null;
   @Input() public set setContactsArray(contacts: ContactModel[]) {
@@ -33,7 +38,7 @@ export class ContactListComponent implements OnInit, AfterViewInit {
     if (value !== '' && this.searchMode) {
       this.searchedContactsArray = [];
       for (const contact of this.contactsArray) {
-        if (contact.formattedPhoneNumber.search(value) > -1 || contact.getContactFullName().toLowerCase().search(value.toLowerCase()) > -1) {
+        if (contact.formattedPhoneNumber.search(value) > -1 || contact.decoratedFullName.search(value.toLowerCase()) > -1) {
           this.searchedContactsArray.push(contact);
         }
       }
@@ -47,7 +52,9 @@ export class ContactListComponent implements OnInit, AfterViewInit {
   public favoriteContactsArray: ContactModel[] = [];
   public searchedContactsArray: ContactModel[] = [];
 
-  constructor(private contactsService: ContactsService, private vibrationService: DeviceVibrationService) { }
+  constructor(private contactsService: ContactsService,
+              private renderer: Renderer2,
+              private vibrationService: DeviceVibrationService) { }
 
   public ngOnInit(): void {
     this.contactListReference.nativeElement.style.width = window.innerWidth + 'px';
@@ -62,17 +69,19 @@ export class ContactListComponent implements OnInit, AfterViewInit {
     if (!item) {
       return null;
     }
-    return index;
+    return item.id;
   }
   public toggleFavoriteContact(contact: ContactModel): void {
     if (!contact.favorite) {
       contact.favorite = true;
       this.favoriteContactsArray.push(contact);
       this.vibrationService.deviceVibrationSetFavoriteMethod();
+      this.contactsService.contactsSetFavoriteMethod(contact.id);
     } else {
       contact.favorite = false;
       this.favoriteContactsArray.splice(this.favoriteContactsArray.indexOf(contact), 1);
       this.vibrationService.deviceVibrationRemoveFavoriteMethod();
+      this.contactsService.contactsRemoveFavoriteMethod(contact.id);
     }
   }
 }

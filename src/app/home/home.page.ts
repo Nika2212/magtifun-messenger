@@ -25,6 +25,7 @@ export class HomePage implements OnInit {
   public homeHeaderSearchValue: string = '';
   public homeCarouselRailCoordinates: number[] = [];
   public homeContactListContentLoaded: boolean = false;
+  public homeMessageListContentLoaded: boolean = false;
   public homeBodyHeight: number = null;
 
   constructor(private contactsService: ContactsService,
@@ -52,6 +53,9 @@ export class HomePage implements OnInit {
   }
   public homeContactListContentLoadMethod(event: boolean): void {
     this.homeContactListContentLoaded = true;
+  }
+  public homeMessageListContentLoadMethod(event: boolean): void {
+    this.homeMessageListContentLoaded = true;
   }
   public homeOnInputBlur(): void {
     this.homeHeaderSearchMode = false;

@@ -21,6 +21,7 @@ export const RESOURCE = {
                 HEART: './assets/image/icon/heart.svg',
                 HEART_SELECTED: './assets/image/icon/heart_selected.svg',
                 LONG_ARROW_LEFT: './assets/image/icon/long-arrow-left.svg',
+                PAPER_PLANE: './assets/image/icon/paper-plane.svg',
             }
         }
     },

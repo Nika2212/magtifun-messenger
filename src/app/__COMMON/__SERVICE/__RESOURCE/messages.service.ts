@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { Platform } from '@ionic/angular';
-import { MessageChainModel, MessageModel } from '../../__MODEL/message-chain.model';
+import { MessageChainModel, MessageModel, RecipientModel } from '../../__MODEL/message-chain.model';
 import { ContactModel } from '../../__MODEL/contact.model';
+import {Subject} from 'rxjs';
 
 declare var SMS: any;
 
@@ -72,28 +73,36 @@ export class MessagesService {
     }
     private convertToMessagesChain(receivedMessages: any[], sentMessages: any[], contactList: ContactModel[]): MessageChainModel[] {
         const messages: MessageChainModel[] = [];
-        for (const message of receivedMessages) {
-            const newContact = new ContactModel(null, null, null, null, message.address);
-            const newMessage = new MessageModel(message._id, true, message.date, message.body);
-            const foundContact = messages.filter(chain => chain.contact.formattedPhoneNumber === newContact.formattedPhoneNumber)[0];
-            if (foundContact) {
-                foundContact.messages.push(newMessage);
+
+        // tslint:disable-next-line:variable-name
+        for (const _message of receivedMessages) {
+            const recipient = new RecipientModel(_message.address);
+            const message = new MessageModel(_message._id, true, _message.date, _message.body);
+            const messageChain = messages.filter(rec => rec.recipient.formattedPhoneNumber === recipient.formattedPhoneNumber)[0];
+            if (messageChain) {
+                messageChain.messages.push(message);
             } else {
-                messages.push(new MessageChainModel(newContact, [newMessage]));
+                messages.push(new MessageChainModel(recipient, [message]));
             }
         }
-        for (const message of sentMessages) {
-            const newContact = new ContactModel(null, null, null, null, message.address);
-            const newMessage = new MessageModel(message._id, false, message.date, message.body);
-            const foundContact = messages.filter(chain => chain.contact.formattedPhoneNumber === newContact.formattedPhoneNumber)[0];
-            if (foundContact) {
-                foundContact.messages.push(newMessage);
+        // tslint:disable-next-line:variable-name
+        for (const _message of sentMessages) {
+            const recipient = new RecipientModel(_message.address);
+            const message = new MessageModel(_message._id, false, _message.date, _message.body);
+            const messageChain = messages.filter(rec => rec.recipient.formattedPhoneNumber === recipient.formattedPhoneNumber)[0];
+            if (messageChain) {
+                messageChain.messages.push(message);
             } else {
-                messages.push(new MessageChainModel(newContact, [newMessage]));
+                messages.push(new MessageChainModel(recipient, [message]));
             }
         }
-        for (const message of messages) {
-            message.messages.sort((a, b) => {
+        // tslint:disable-next-line:variable-name
+        for (const _message of messages) {
+            const contact = contactList.filter(cnt => cnt.formattedPhoneNumber === _message.recipient.formattedPhoneNumber)[0];
+            if (contact) {
+                _message.recipient.decoratedFullName = contact.decoratedFullName;
+            }
+            _message.messages.sort((a, b) => {
                 if (new Date(a.time) > new Date(b.time)) {
                     return 1;
                 } else {
@@ -101,18 +110,17 @@ export class MessagesService {
                 }
             });
         }
-        if (contactList) {
-            for (const message of messages) {
-                for (const contact of contactList) {
-                    if (message.contact.formattedPhoneNumber === contact.formattedPhoneNumber) {
-                        message.contact.lastName = contact.lastName;
-                        message.contact.firstName = contact.firstName;
-                        message.contact.favorite = contact.favorite;
-                        message.contact.id = contact.id;
-                    }
-                }
+
+        messages.sort((a, b ) => {
+            if (new Date(a.messages[a.messages.length - 1].time) > new Date(b.messages[b.messages.length - 1].time)) {
+                return 1;
+            } else {
+                return -1;
             }
-        }
+        });
+
+        console.log(messages);
+
         return messages;
     }
 }
