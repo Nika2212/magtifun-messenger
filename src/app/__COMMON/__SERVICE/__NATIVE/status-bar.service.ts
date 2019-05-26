@@ -16,6 +16,14 @@ export class StatusBarService {
             console.log('Status-Bar fill in red');
         }
     }
+    public statusBarFillLightRedMethod(): void {
+        try {
+            this.statusBar.backgroundColorByHexString('#c62828');
+            this.statusBar.styleLightContent();
+        } catch (e) {
+            console.log('Status-Bar fill in red');
+        }
+    }
     public statusBarFillBlackMethod(): void {
         try {
             this.statusBar.backgroundColorByHexString('#222');

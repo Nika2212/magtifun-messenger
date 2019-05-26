@@ -46,6 +46,7 @@ export const RESOURCE = {
         MAGTICOM : {
             ROOT : 'http://www.magtifun.ge',
             LOGIN : '/index.php?lang=en&page=11',
+            CHECK : '/index.php?lang=en&page=2',
             RESTORE : '/index.php?lang=ge&page=14'
         }
     }

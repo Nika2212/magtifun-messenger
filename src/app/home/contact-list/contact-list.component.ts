@@ -38,7 +38,7 @@ export class ContactListComponent implements OnInit, AfterViewInit {
     if (value !== '' && this.searchMode) {
       this.searchedContactsArray = [];
       for (const contact of this.contactsArray) {
-        if (contact.formattedPhoneNumber.search(value) > -1 || contact.decoratedFullName.search(value.toLowerCase()) > -1) {
+        if (contact.formattedPhoneNumber.search(value) > -1 || contact.decoratedFullName.toLowerCase().search(value.toLowerCase()) > -1) {
           this.searchedContactsArray.push(contact);
         }
       }

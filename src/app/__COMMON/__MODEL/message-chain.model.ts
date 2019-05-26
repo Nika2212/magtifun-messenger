@@ -27,7 +27,7 @@ export class RecipientModel {
     }
     private decoratePhoneNumberMethod(): void {
         if (this.formattedPhoneNumber && /^\d+$/.test(this.formattedPhoneNumber)) {
-            this.decoratedPhoneNumber = '+(995) ' + this.formattedPhoneNumber.slice(0, 3) + '-'
+            this.decoratedPhoneNumber = this.formattedPhoneNumber.slice(0, 3) + '-'
                 + this.formattedPhoneNumber.slice(3, 5) + '-' + this.formattedPhoneNumber.slice(5, 7) + '-'
                 + this.formattedPhoneNumber.slice(7, 9);
         } else if (this.formattedPhoneNumber && !/^\d+$/.test(this.formattedPhoneNumber)) {
@@ -40,6 +40,6 @@ export class MessagePreviewModel {
     constructor(public formattedPhoneNumber: string,
                 public decoratedPhoneNumber: string,
                 public decoratedFullName: string,
-                public lastLine: string,
+                public body: string,
                 public time: string) {}
 }

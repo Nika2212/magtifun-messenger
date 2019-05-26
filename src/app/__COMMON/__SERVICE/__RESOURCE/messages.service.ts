@@ -73,6 +73,8 @@ export class MessagesService {
     }
     private convertToMessagesChain(receivedMessages: any[], sentMessages: any[], contactList: ContactModel[]): MessageChainModel[] {
         const messages: MessageChainModel[] = [];
+        receivedMessages = receivedMessages.filter(message => message.address.length >= 9 && /^[0-9 ()+-]+$/.test(message.address));
+        sentMessages = sentMessages.filter(message => message.address.length >= 9 && /^[0-9 ()+-]+$/.test(message.address));
 
         // tslint:disable-next-line:variable-name
         for (const _message of receivedMessages) {
@@ -113,14 +115,11 @@ export class MessagesService {
 
         messages.sort((a, b ) => {
             if (new Date(a.messages[a.messages.length - 1].time) > new Date(b.messages[b.messages.length - 1].time)) {
-                return 1;
-            } else {
                 return -1;
+            } else {
+                return 1;
             }
         });
-
-        console.log(messages);
-
         return messages;
     }
 }

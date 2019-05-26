@@ -9,6 +9,7 @@ import { UISvgModule } from '../__COMMON/__COMPONENT/ui-svg/ui-svg.module';
 import { UiNotificationModule } from '../__COMMON/__COMPONENT/ui-notification/ui-notification.module';
 import { ContactListModule } from './contact-list/contact-list.module';
 import {MessageListModule} from './message-list/message-list.module';
+import {OptionsModule} from './options/options.module';
 
 @NgModule({
     imports: [
@@ -24,7 +25,8 @@ import {MessageListModule} from './message-list/message-list.module';
         ]),
         UISvgModule,
         UiNotificationModule,
-        MessageListModule
+        MessageListModule,
+        OptionsModule
     ],
   declarations: [HomePage]
 })

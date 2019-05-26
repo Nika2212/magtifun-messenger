@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { HTTP } from '@ionic-native/http/ngx';
-import { Storage } from '@ionic/storage';
-import { RESOURCE } from '../../../resource';
+import {Injectable} from '@angular/core';
+import {HTTP} from '@ionic-native/http/ngx';
+import {Storage} from '@ionic/storage';
+import {RESOURCE} from '../../../resource';
 
 @Injectable({
     providedIn: 'root'
@@ -50,6 +50,10 @@ export class MagticomService {
     public async magticomLogoutMethod(): Promise<number> {
         return await this.clearDataMethod() ? 200 : -1;
     }
+    public async magticomGetBalance(): Promise<any> {
+        const response = await this.http.get(this.API.MAGTICOM.ROOT + this.API.MAGTICOM.CHECK, null, null);
+        return new DOMParser().parseFromString(response.data, 'text/html').getElementsByClassName('xxlarge')[0].innerHTML;
+    }
 
     private clearDataMethod(): Promise<boolean> {
         return new Promise((resolve, reject) => {
@@ -65,7 +69,9 @@ export class MagticomService {
     }
     private fetchSessionMethod(): Promise<number> {
         return new Promise((resolve, reject) => {
-            this.http.getCookieString(this.API.MAGTICOM.ROOT);
+            const cookie = this.http.getCookieString(this.API.MAGTICOM.ROOT);
+            console.log('Cookie \t', cookie);
+            this.storage.set('magticom_cookie', cookie);
             this.http.get(this.API.MAGTICOM.ROOT, null, null)
                 .then((response: any) => {
                     const rawHTMLData = response.data;

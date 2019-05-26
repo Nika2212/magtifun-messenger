@@ -1,10 +1,13 @@
-import {Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { MessagesService } from '../__COMMON/__SERVICE/__RESOURCE/messages.service';
 import { ContactModel } from '../__COMMON/__MODEL/contact.model';
 import { ContactsService } from '../__COMMON/__SERVICE/__RESOURCE/contacts.service';
-import { MessageChainModel } from '../__COMMON/__MODEL/message-chain.model';
+import { MessageChainModel, MessagePreviewModel } from '../__COMMON/__MODEL/message-chain.model';
 import { RESOURCE } from '../resource';
-import {Renderer3} from '@angular/core/src/render3/interfaces/renderer';
+import { StatusBarService } from '../__COMMON/__SERVICE/__NATIVE/status-bar.service';
+import {MagticomService} from '../__COMMON/__SERVICE/__API/magticom.service';
+import {Router} from '@angular/router';
+import {UINotificationService} from '../__COMMON/__COMPONENT/ui-notification/ui-notification.service';
 
 @Component({
   selector: 'app-home',
@@ -21,6 +24,7 @@ export class HomePage implements OnInit {
   public homeChildPageSelected: {id: string, name: string, iconActive: string, iconPassive: string};
   public homeClientContactsArray: ContactModel[] = [];
   public homeClientMessagesArray: MessageChainModel[] = [];
+  public homeClientPreviewMessagesArray: MessagePreviewModel[] = [];
   public homeHeaderSearchMode: boolean = false;
   public homeHeaderSearchValue: string = '';
   public homeCarouselRailCoordinates: number[] = [];
@@ -30,12 +34,29 @@ export class HomePage implements OnInit {
 
   constructor(private contactsService: ContactsService,
               private messagesService: MessagesService,
-              private renderer: Renderer2) {}
+              private renderer: Renderer2,
+              private magticomService: MagticomService,
+              private statusBarService: StatusBarService,
+              private notificationService: UINotificationService,
+              private router: Router) {}
 
   public ngOnInit(): void {
+    this.statusBarService.statusBarFillLightRedMethod();
     this.homeChildPagesArrayFillMethod();
     this.carouselRailConfigMethod();
     this.homeFetchResources().catch(() => {});
+    this.magticomService.magticomGetBalance()
+        .then(res => {
+          if (/^[0-9 ()+-]+$/.test(res)) {
+            // balance
+          } else {
+            this.notificationService.setNotification(-1);
+          }
+        })
+        .catch(() =>  this.notificationService.setNotification(0));
+  }
+  public ionViewWillEnter() {
+    this.statusBarService.statusBarFillLightRedMethod();
   }
   public homeChildPageSelectMethod(page: {id: string, name: string, iconActive: string, iconPassive: string}): void {
     const coordinates = this.homeCarouselRailCoordinates[this.homeChildPagesArray.indexOf(page)];
@@ -62,8 +83,20 @@ export class HomePage implements OnInit {
     this.homeHeaderSearchValue = '';
   }
   private async homeFetchResources(): Promise<void> {
+    const previewMessage: MessagePreviewModel[] = [];
     this.homeClientContactsArray = await this.contactsService.contactsFetchMethod();
     this.homeClientMessagesArray = await this.messagesService.messagesFetchMethod(this.homeClientContactsArray);
+    for (const message of this.homeClientMessagesArray) {
+      const newMessage = new MessagePreviewModel(
+          message.recipient.formattedPhoneNumber,
+          message.recipient.decoratedPhoneNumber,
+          message.recipient.decoratedFullName,
+          message.messages[message.messages.length - 1].body,
+          message.messages[message.messages.length - 1].time
+      );
+      previewMessage.push(newMessage);
+    }
+    this.homeClientPreviewMessagesArray = previewMessage;
   }
   private homeChildPagesArrayFillMethod(): void {
     this.homeChildPagesArray = [

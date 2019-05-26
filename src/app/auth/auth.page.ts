@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { MagticomService } from '../__COMMON/__SERVICE/__API/magticom.service';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { StatusBarService } from '../__COMMON/__SERVICE/__NATIVE/status-bar.serv
   templateUrl: './auth.page.html',
   styleUrls: ['./auth.page.scss'],
 })
-export class AuthPage implements OnInit {
+export class AuthPage {
   public ASSETS = RESOURCE.ASSETS;
   public inPageProcessState: boolean = false;
   public passwordVisibilityState: boolean = false;
@@ -21,9 +21,14 @@ export class AuthPage implements OnInit {
               private notificationService: UINotificationService,
               private statusBarService: StatusBarService) {}
 
-  public ngOnInit(): void {
+
+  public ionViewWillEnter() {
     this.statusBarService.statusBarFillRedMethod();
   }
+  public ionViewWillLeave() {
+    this.inPageProcessState = false;
+  }
+
   public authSignInMethod(form: NgForm): void {
     const username = form.value.username.toString().trim().replace(' ', '');
     const password = form.value.password.trim();
