@@ -49,6 +49,10 @@
   font-size: 36px !important;
 }
 
+.typo-bold {
+  font-weight: 700;
+}
+
 .typo-upper {
   text-transform: uppercase !important;
 }

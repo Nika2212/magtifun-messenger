@@ -1,6 +1,6 @@
 <ui-notification></ui-notification>
 <div class="home ui-page-content bg-secondary-black">
-  <header class="home-header p-relative content-row-start w-100 bg-secondary-red">
+  <header  class="home-header p-relative content-row-start w-100 bg-secondary-red">
     <div [ngClass]="{'d-none' : homeHeaderSearchMode}" class="home-header-idle w-100 h-100 content-row-start">
       <p class="brand typo-thirdly color-secondary-white">magtifun<sup>α</sup></p>
       <span [ngClass]="{'d-none' : homeChildPageSelected.id === '3'}" class="search-block h-100 self-end content-row-center" (pointerup)="homeHeaderSearchModeToggleMethod()">
@@ -8,8 +8,8 @@
       </span>
     </div>
     <div [ngClass]="{'d-none' : !homeHeaderSearchMode}" class="home-header-search w-100 h-100 content-row-start">
-      <div class="back-btn-box h-100 content-row-center" (click)="homeHeaderSearchModeToggleMethod()">
-        <img class="ui-icon-lg" [src]="ASSETS.IMAGE.ICON.LONG_ARROW_LEFT" alt="">
+      <div class="back-btn-box h-100 content-row-start" (click)="homeHeaderSearchModeToggleMethod()">
+        <img class="ui-icon-lg" [src]="ASSETS.IMAGE.ICON.BACK" alt="">
       </div>
       <input #homeHeaderSearchInputReference
              class="typo-secondary typo-md color-secondary-white"
@@ -25,14 +25,16 @@
       <app-message-list [sectionBodyHeight]="homeBodyHeight"
                         [messagesArray]="homeClientPreviewMessagesArray"
                         [contentLoaded]="homeMessageListContentLoaded"
-                        (contentLoadedEvent)="homeMessageListContentLoadMethod($event)">
+                        (contentLoadedEvent)="homeMessageListContentLoadMethod($event)"
+                        (selectedChainEvent)="onChainSelect($event)">
       </app-message-list>
       <app-contact-list [setContactsArray]="homeClientContactsArray"
                         [contentLoaded]="homeContactListContentLoaded"
                         [searchMode]="homeHeaderSearchMode"
                         [setSearchValue]="homeHeaderSearchValue"
                         [sectionBodyHeight]="homeBodyHeight"
-                        (contentLoadedEvent)="homeContactListContentLoadMethod($event)">
+                        (contentLoadedEvent)="homeContactListContentLoadMethod($event)"
+                        (selectedContactEvent)="onContactSelect($event)">
       </app-contact-list>
       <app-options [sectionBodyHeight]="homeBodyHeight"></app-options>
     </div>
@@ -45,4 +47,11 @@
               [SVG_PATH_INACTIVE]="page.iconPassive"></ui-svg>
     </div>
   </footer>
+</div>
+<div @composer *ngIf="composeMode" class="composer p-absolute">
+  <app-composer
+          [composeMessageChain]="composeMessageChain"
+          [currentBalance]="currentBalance"
+          (closeComposer)="composeTrigger($event)">
+  </app-composer>
 </div>

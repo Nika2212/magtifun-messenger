@@ -20,7 +20,7 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
       this.splashScreen.hide();
-      this.checkToken();
+      // this.checkToken();
     });
   }
   checkToken() {

@@ -4,24 +4,24 @@ export const contactListAnimation = [
     trigger('contact-wrapper', [
         transition(':enter', [
             style({ height: '0' }),
-            animate('320ms ease-in-out', style({ height: '70px' }))
+            animate('300ms ease-in-out', style({ height: '70px' }))
         ]),
         transition(':leave', [
             style({ height: '70px' }),
-            animate('320ms ease-out', style({ height: '0' }))
+            animate('300ms ease-out', style({ height: '0' }))
         ]),
     ]),
     trigger('contact-children', [
         transition(':enter', [
             query('.contact', [
                 style({ transform: 'rotateX(-90deg)', opacity: 0, borderLeftColor: '#333'}),
-                animate('320ms ease-in-out', style({ transform: 'rotateX(0deg)', opacity: 1, borderLeftColor: '#252525'}))
+                animate('300ms ease-in-out', style({ transform: 'rotateX(0deg)', opacity: 1, borderLeftColor: '#252525'}))
             ])
         ]),
         transition(':leave', [
             query('.contact', [
                 style({ transform: 'rotateX(0deg)', opacity: 1, borderLeftColor: '#252525' }),
-                animate('320ms ease-out', style({ transform: 'rotateX(-90deg)', opacity: 0, borderLeftColor: '#333' }))
+                animate('300ms ease-out', style({ transform: 'rotateX(-90deg)', opacity: 0, borderLeftColor: '#333' }))
             ])
         ]),
     ])

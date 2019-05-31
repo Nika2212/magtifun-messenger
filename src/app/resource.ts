@@ -20,8 +20,10 @@ export const RESOURCE = {
                 SEARCH: './assets/image/icon/search.svg',
                 HEART: './assets/image/icon/heart.svg',
                 HEART_SELECTED: './assets/image/icon/heart_selected.svg',
-                LONG_ARROW_LEFT: './assets/image/icon/long-arrow-left.svg',
+                LONG_ARROW_LEFT: './assets/image/icon/long-arrow-left.png',
                 PAPER_PLANE: './assets/image/icon/paper-plane.svg',
+                BACK: './assets/image/icon/angle-left.svg',
+                SEND: './assets/image/icon/send.png',
             }
         }
     },

@@ -47,6 +47,7 @@ export class ContactListComponent implements OnInit, AfterViewInit {
     }
   }
   @Output() public contentLoadedEvent: EventEmitter<boolean> = new EventEmitter(true);
+  @Output() public selectedContactEvent: EventEmitter<ContactModel> = new EventEmitter(true);
 
   public contactsArray: ContactModel[] = [];
   public favoriteContactsArray: ContactModel[] = [];
@@ -83,5 +84,8 @@ export class ContactListComponent implements OnInit, AfterViewInit {
       this.vibrationService.deviceVibrationRemoveFavoriteMethod();
       this.contactsService.contactsRemoveFavoriteMethod(contact.id);
     }
+  }
+  public selectContactMethod(contact: ContactModel): void {
+    this.selectedContactEvent.emit(contact);
   }
 }

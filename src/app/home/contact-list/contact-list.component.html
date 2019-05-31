@@ -72,13 +72,13 @@
     <div [ngClass]="{'d-none' : !contentLoaded || searchMode}" class="favorite-contact-list w-100 content-column-start">
         <p class="heading w-100 content-column-center content-align-start typo-primary typo-sm color-secondary-white">ფავორიტი კონტაქტი</p>
         <div @contact-wrapper @contact-children *ngFor="let contact of favoriteContactsArray; trackBy: ngForPerformance" class="contact-wrapper w-100">
-            <div class="contact w-100 bg-secondary-black content-row-start">
+            <div (click)="selectContactMethod(contact)" class="contact w-100 bg-secondary-black content-row-start">
                 <span class="contact-circle typo-capital content-row-center typo-primary typo-lg">{{ contact.firstName[0] }}</span>
                 <div class="contact-information content-column-center content-align-start">
                     <p class="contact-name typo-fourthly typo-md color-secondary-white">{{ contact.decoratedFullName }}</p>
                     <p class="contact-number typo-fourthly-a typo-xs">{{ contact.decoratedPhoneNumber }}</p>
                 </div>
-                <div (click)="toggleFavoriteContact(contact)" class="contact-favorite self-end h-100 content-row-center">
+                <div (click)="toggleFavoriteContact(contact); $event.stopPropagation()" class="contact-favorite self-end h-100 content-row-center">
                     <svg [ngClass]="{'heart-animate' : contact.favorite, 'heart-animate-end' : !contact.favorite}" class="heart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                         <path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path>
                     </svg>
@@ -88,13 +88,13 @@
     </div>
     <div [ngClass]="{'d-none' : !contentLoaded || searchMode}" class="all-contact-list w-100 content-column-start">
         <p class="heading w-100 content-column-center content-align-start typo-primary typo-sm color-secondary-white">ყველა კონტაქტი</p>
-        <div #contactsArrayReference *ngFor="let contact of contactsArray; trackBy: ngForPerformance" class="contact w-100 bg-secondary-black content-row-start">
+        <div (click)="selectContactMethod(contact)" #contactsArrayReference *ngFor="let contact of contactsArray; trackBy: ngForPerformance" class="contact w-100 bg-secondary-black content-row-start">
             <span class="contact-circle typo-capital content-row-center typo-primary typo-lg">{{ contact.firstName[0] }}</span>
             <div class="contact-information content-column-center content-align-start">
                 <p class="contact-name typo-fourthly typo-md color-secondary-white">{{ contact.decoratedFullName }}</p>
                 <p class="contact-number typo-fourthly-a typo-xs">{{ contact.decoratedPhoneNumber }}</p>
             </div>
-            <div (pointerup)="toggleFavoriteContact(contact)" class="contact-favorite self-end h-100 content-row-center">
+            <div (click)="toggleFavoriteContact(contact); $event.stopPropagation()" class="contact-favorite self-end h-100 content-row-center">
                 <svg [ngClass]="{'heart-animate' : contact.favorite, 'heart-animate-end' : !contact.favorite}" class="heart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                     <path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path>
                 </svg>
@@ -102,7 +102,7 @@
         </div>
     </div>
     <div [ngClass]="{'d-none' : !contentLoaded || !searchMode}" class="search-list w-100 content-column-start">
-        <div *ngFor="let contact of searchedContactsArray" class="contact w-100 bg-secondary-black content-row-start">
+        <div (click)="selectContactMethod(contact); $event.stopPropagation()" *ngFor="let contact of searchedContactsArray" class="contact w-100 bg-secondary-black content-row-start">
             <span class="contact-circle typo-capital content-row-center typo-primary typo-lg">{{ contact.firstName[0] }}</span>
             <div class="contact-information content-column-center content-align-start">
                 <p class="contact-name typo-fourthly typo-md color-secondary-white">{{ contact.decoratedFullName }}</p>

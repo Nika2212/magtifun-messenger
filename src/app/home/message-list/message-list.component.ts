@@ -28,6 +28,7 @@ export class MessageListComponent implements OnInit, AfterViewInit {
   @Input() public contentLoaded: boolean = false;
   @Input() public messagesArray: MessagePreviewModel[] = [];
   @Output() public contentLoadedEvent: EventEmitter<boolean> = new EventEmitter(true);
+  @Output() public selectedChainEvent: EventEmitter<MessagePreviewModel> = new EventEmitter(true);
 
   public ASSETS = RESOURCE.ASSETS;
 
@@ -39,5 +40,8 @@ export class MessageListComponent implements OnInit, AfterViewInit {
   }
   public ngAfterViewInit(): void {
     this.messageArrayReference.changes.subscribe(() => this.contentLoadedEvent.emit(true));
+  }
+  public onChainSelect(chain: MessagePreviewModel): void {
+    this.selectedChainEvent.emit(chain);
   }
 }

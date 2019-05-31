@@ -12,6 +12,7 @@ export class MessageModel {
     }
 }
 export class RecipientModel {
+
     public decoratedFullName: string = null;
     public decoratedPhoneNumber: string;
 
@@ -37,9 +38,39 @@ export class RecipientModel {
     }
 }
 export class MessagePreviewModel {
+    static monthArray: string[] = [
+        'იან',
+        'თებ',
+        'მარ',
+        'აპრ',
+        'მაი',
+        'ივნ',
+        'ივლ',
+        'აგვ',
+        'სექ',
+        'ოქტ',
+        'ნოე',
+        'დეკ'
+    ];
+
     constructor(public formattedPhoneNumber: string,
                 public decoratedPhoneNumber: string,
                 public decoratedFullName: string,
                 public body: string,
-                public time: string) {}
+                public time: string) {
+        this.time = this.getTime(this.time);
+    }
+    private getTime(timeStamp: string): string {
+        const today = new Date();
+        const time = new Date(timeStamp);
+        if (today.getFullYear() === time.getFullYear()) {
+            if (today.getMonth() === time.getMonth() && today.getDate() === time.getDate()) {
+                return time.getHours() + ':' + today.getMinutes();
+            } else {
+                return time.getDate() + ' ' + MessagePreviewModel.monthArray[time.getMonth()];
+            }
+        } else {
+            return time.getDate().toString() + ' ' + MessagePreviewModel.monthArray[time.getMonth()] + ' ' + time.getFullYear();
+        }
+    }
 }

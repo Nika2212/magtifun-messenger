@@ -85,7 +85,7 @@
 
 .heading {
   padding-left: 15px;
-  padding-right: 0;
+  padding-right: 15px;
 
   height: 45px;
 
@@ -145,7 +145,7 @@
 .message .message-information .message-body {
   margin-top: 5px;
 
-  max-width: 240px;
+  max-width: 200px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -156,9 +156,9 @@
   margin-top: 11px;
   margin-right: 15px;
 
-  color: #333;
-
   align-self: start;
+
+  color: #cacaca;
 }
 
 .message-send-btn {

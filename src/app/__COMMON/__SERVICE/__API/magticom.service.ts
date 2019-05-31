@@ -69,9 +69,6 @@ export class MagticomService {
     }
     private fetchSessionMethod(): Promise<number> {
         return new Promise((resolve, reject) => {
-            const cookie = this.http.getCookieString(this.API.MAGTICOM.ROOT);
-            console.log('Cookie \t', cookie);
-            this.storage.set('magticom_cookie', cookie);
             this.http.get(this.API.MAGTICOM.ROOT, null, null)
                 .then((response: any) => {
                     const rawHTMLData = response.data;

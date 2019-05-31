@@ -8,8 +8,9 @@ import { HomePage } from './home.page';
 import { UISvgModule } from '../__COMMON/__COMPONENT/ui-svg/ui-svg.module';
 import { UiNotificationModule } from '../__COMMON/__COMPONENT/ui-notification/ui-notification.module';
 import { ContactListModule } from './contact-list/contact-list.module';
-import {MessageListModule} from './message-list/message-list.module';
-import {OptionsModule} from './options/options.module';
+import { MessageListModule } from './message-list/message-list.module';
+import { OptionsModule } from './options/options.module';
+import { ComposerModule } from './composer/composer.module';
 
 @NgModule({
     imports: [
@@ -26,7 +27,8 @@ import {OptionsModule} from './options/options.module';
         UISvgModule,
         UiNotificationModule,
         MessageListModule,
-        OptionsModule
+        OptionsModule,
+        ComposerModule
     ],
   declarations: [HomePage]
 })

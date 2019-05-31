@@ -2,17 +2,20 @@ import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/co
 import { MessagesService } from '../__COMMON/__SERVICE/__RESOURCE/messages.service';
 import { ContactModel } from '../__COMMON/__MODEL/contact.model';
 import { ContactsService } from '../__COMMON/__SERVICE/__RESOURCE/contacts.service';
-import { MessageChainModel, MessagePreviewModel } from '../__COMMON/__MODEL/message-chain.model';
+import {MessageChainModel, MessagePreviewModel, RecipientModel} from '../__COMMON/__MODEL/message-chain.model';
 import { RESOURCE } from '../resource';
 import { StatusBarService } from '../__COMMON/__SERVICE/__NATIVE/status-bar.service';
 import {MagticomService} from '../__COMMON/__SERVICE/__API/magticom.service';
 import {Router} from '@angular/router';
 import {UINotificationService} from '../__COMMON/__COMPONENT/ui-notification/ui-notification.service';
+import {homeComposerAnimation} from './home.animation';
+import {checkAndUpdateDirectiveInline} from '@angular/core/src/view/provider';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
+  animations: homeComposerAnimation
 })
 export class HomePage implements OnInit {
   @ViewChild('homeHeaderSearchInputReference') public homeHeaderSearchInputReference: ElementRef;
@@ -31,6 +34,9 @@ export class HomePage implements OnInit {
   public homeContactListContentLoaded: boolean = false;
   public homeMessageListContentLoaded: boolean = false;
   public homeBodyHeight: number = null;
+  public composeMessageChain: MessageChainModel;
+  public composeMode: boolean = false;
+  public currentBalance: number = null;
 
   constructor(private contactsService: ContactsService,
               private messagesService: MessagesService,
@@ -48,12 +54,16 @@ export class HomePage implements OnInit {
     this.magticomService.magticomGetBalance()
         .then(res => {
           if (/^[0-9 ()+-]+$/.test(res)) {
-            // balance
+            this.currentBalance = res;
           } else {
             this.notificationService.setNotification(-1);
+            this.magticomService.magticomLogoutMethod().then(() => this.router.navigate(['auth']));
           }
         })
-        .catch(() =>  this.notificationService.setNotification(0));
+        .catch((err) => {
+          this.notificationService.setNotification(0);
+          console.error(err);
+        });
   }
   public ionViewWillEnter() {
     this.statusBarService.statusBarFillLightRedMethod();
@@ -81,6 +91,27 @@ export class HomePage implements OnInit {
   public homeOnInputBlur(): void {
     this.homeHeaderSearchMode = false;
     this.homeHeaderSearchValue = '';
+  }
+  public onContactSelect(contact: ContactModel): void {
+    const chain = this.homeClientMessagesArray.filter(message => message.recipient.formattedPhoneNumber === contact.formattedPhoneNumber)[0];
+    if (chain) {
+      this.composeMessageChain = chain;
+    } else {
+      this.composeMessageChain = new MessageChainModel(new RecipientModel(contact.formattedPhoneNumber), null);
+      this.composeMessageChain.recipient.decoratedFullName = contact.decoratedFullName;
+    }
+    this.composeTrigger(true);
+  }
+  public onChainSelect(chain: MessagePreviewModel): void {
+    this.composeMessageChain = this.homeClientMessagesArray.filter(message => message.recipient.formattedPhoneNumber === chain.formattedPhoneNumber)[0];
+    if (!this.composeMessageChain) {
+      this.notificationService.setNotification(-1);
+      return;
+    }
+    this.composeTrigger(true);
+  }
+  public composeTrigger(state: boolean): void {
+    this.composeMode = state;
   }
   private async homeFetchResources(): Promise<void> {
     const previewMessage: MessagePreviewModel[] = [];

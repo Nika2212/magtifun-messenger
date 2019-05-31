@@ -1,0 +1,150 @@
+.composer * {
+  flex-shrink: 0 !important;
+}
+.header {
+  height: 60px;
+}
+.header {
+  padding-left: 15px;
+  padding-right: 15px;
+
+  border-bottom: 1px solid #9b2222;
+}
+.footer {
+  padding-left: 15px;
+  padding-right: 0;
+
+  height: 60px;
+
+  margin-top: auto;
+
+  border-top: 1px solid #9b2222;
+}
+.header .back-btn {
+  width: 30px;
+}
+.header img {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  transform: translateX(-10px);
+}
+.header > span {
+  width: 30px;
+}
+.content {
+  padding-left: 15px;
+  padding-right: 15px;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  height: calc(100% - 120px);
+}
+.content .message {
+  margin-top: 5px;
+
+  max-width: 75%;
+  min-height: 35px;
+  height: auto;
+
+  align-self: flex-end;
+}
+.content .message.inbox {
+  align-self: flex-start !important;
+}
+.content .message.inbox p {
+  background-color: #c62828;
+  border: 1px solid #9b2222;
+}
+.content .message.inbox .m-time {
+  align-self: flex-start !important;
+}
+.content .message .m-time {
+  margin-bottom: 3px;
+
+  align-self: flex-end;
+  font-size: 10px;
+  color: #e7e7e7;
+  font-family: 'Arial-Geo', sans-serif;
+}
+.content .message p {
+  padding: 8px;
+
+  width: 100%;
+  height: auto;
+
+  background-color: #333;
+  border: 1px solid #252525;
+  border-radius: 10px;
+
+  text-wrap: normal;
+  line-height: 18px;
+  color: #fafafa;
+  font-size: 14px;
+  text-overflow: ellipsis;
+}
+.contact-info {
+  margin-left: auto;
+  margin-right: auto;
+}
+.contact-info span:first-child {
+  margin-bottom: 2px;
+}
+.message-box {
+  margin-right: 15px;
+
+  padding-right: 15px;
+
+  flex: 1;
+  height: 40px;
+
+  border: 1px solid #333;
+  border-radius: 35px;
+}
+.message-box textarea {
+  margin-left: 8px;
+  flex: 1;
+  height: 25px;
+  padding-top: 4px;
+
+  background-color: transparent;
+
+  color: #fafafa;
+  font-size: 14px;
+  resize: none;
+  border: none;
+  outline: none;
+}
+.message-box textarea::placeholder {
+  font-family: 'Roboto-Geo-Regular', sans-serif;
+  font-size: 14px;
+}
+.message-box .message-count {
+  margin-left: 4px;
+  padding-top: 1px;
+
+  width: 30px;
+  height: 30px;
+
+  border: 1px solid #9b2222;
+  border-radius: 100%;
+}
+.send-btn {
+  margin-right: 15px;
+  margin-left: 5px;
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: 100%;
+
+  background-color: rgba(155, 34, 34, 0.85);
+}
+.send-btn img {
+  width: 16px;
+  height: 16px;
+
+  transform: rotate(90deg);
+}

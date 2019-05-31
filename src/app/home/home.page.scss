@@ -30,6 +30,9 @@
   padding-left: 15px;
   padding-right: 15px;
 }
+.home-header .back-btn-box img {
+  transform: translateX(-10px);
+}
 .home-header input {
   margin-left: 15px;
   margin-right: 15px;
@@ -78,4 +81,13 @@
 }
 .home-footer .icon {
   flex: 1;
+}
+.composer {
+  width: 100%;
+  height: 100vh;
+
+  left: 0;
+  top: 0;
+
+  z-index: 101;
 }
