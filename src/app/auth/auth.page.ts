@@ -34,7 +34,7 @@ export class AuthPage {
     const password = form.value.password.trim();
     if (this.validateCredentialMethod(username, password) && !this.inPageProcessState) {
       this.inPageProcessState = true;
-      this.magticomService.magticomLoginMethod(username, password)
+      this.magticomService.login(username, password)
           .then(() => this.router.navigate(['home']))
           .catch(errorCode => {
             this.inPageProcessState = false;

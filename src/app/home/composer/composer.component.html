@@ -9,18 +9,18 @@
     </div>
     <span class="h-100"></span>
   </div>
-  <div class="content w-100 content-column-start">
-    <div *ngFor="let message of composeMessageChain.messages" [ngClass]="{'inbox' : message.inbox}" class="message content-column-start">
-      <span class="m-time">{{ message.decoratedTime }}</span>
+  <div #contentReference class="content w-100 content-column-start">
+    <div *ngFor="let message of composeMessageChain.messages; let i = index" [ngClass]="{'inbox' : message.inbox}" class="message content-column-start">
+      <span *ngIf="i !== 0 && message.decoratedTime !== composeMessageChain.messages[composeMessageChain.messages.indexOf(message) - 1].decoratedTime" class="m-time">{{ message.decoratedTime }}</span>
       <p class="m-text">{{ message.body }}</p>
     </div>
   </div>
   <div class="footer w-100 content-row-start bg-secondary-red">
     <div class="message-box content-row-start bg-secondary-black">
       <span class="message-count bg-secondary-red typo-xs color-secondary-white content-row-center">{{ currentBalance }}</span>
-      <textarea maxlength="160" placeholder="შეტყობინება..."></textarea>
+      <textarea [(ngModel)]="messageText" maxlength="160" placeholder="შეტყობინება..."></textarea>
     </div>
-    <div class="send-btn self-end content-row-center">
+    <div (click)="sendMessage()" class="send-btn self-end content-row-center">
       <img [src]="ASSETS.IMAGE.ICON.LONG_ARROW_LEFT" alt="">
     </div>
   </div>

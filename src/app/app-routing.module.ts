@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AppComponent } from './app.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', component: AppComponent },
   { path: 'home', loadChildren: './home/home.module#HomePageModule' },
   { path: 'auth', loadChildren: './auth/auth.module#AuthPageModule' },
 ];

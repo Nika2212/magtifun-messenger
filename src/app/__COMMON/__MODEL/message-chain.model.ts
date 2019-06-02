@@ -2,13 +2,37 @@ export class MessageChainModel {
     constructor(public recipient: RecipientModel, public messages: MessageModel[]) {}
 }
 export class MessageModel {
+    static monthArray: string[] = [
+        'იანვარი',
+        'თებერვალი',
+        'მარტი',
+        'აპრილი',
+        'მაისი',
+        'ივნისი',
+        'ივლისი',
+        'აგვისტო',
+        'სექტემბერი',
+        'ოქტომბერი',
+        'ნოემბერი',
+        'დეკემბერი'
+    ];
     public decoratedTime: string;
     constructor(public id: string, public inbox: boolean, public time: string, public body: string) {
         this.decorateTime();
     }
 
     private decorateTime(): void {
-        this.decoratedTime = '00:00';
+        const today = new Date();
+        const time = new Date(this.time);
+        if (today.getFullYear() === time.getFullYear()) {
+            if (today.getMonth() === time.getMonth() && today.getDate() === time.getDate()) {
+                this.decoratedTime = time.getHours() + ':' + (time.getMinutes().toString().length === 1 ? '0' + time.getMinutes() : time.getMinutes() );
+            } else {
+                this.decoratedTime = time.getDate() + ' ' + MessageModel.monthArray[time.getMonth()];
+            }
+        } else {
+            this.decoratedTime = time.getDate().toString() + ' ' + MessageModel.monthArray[time.getMonth()] + ' ' + time.getFullYear();
+        }
     }
 }
 export class RecipientModel {
@@ -65,9 +89,9 @@ export class MessagePreviewModel {
         const time = new Date(timeStamp);
         if (today.getFullYear() === time.getFullYear()) {
             if (today.getMonth() === time.getMonth() && today.getDate() === time.getDate()) {
-                return time.getHours() + ':' + today.getMinutes();
+                return time.getHours() + ':' + (time.getMinutes().toString().length === 1 ? '0' + time.getMinutes() : time.getMinutes() );
             } else {
-                return time.getDate() + ' ' + MessagePreviewModel.monthArray[time.getMonth()];
+                return time.getDate() + ' ' + MessageModel.monthArray[time.getMonth()];
             }
         } else {
             return time.getDate().toString() + ' ' + MessagePreviewModel.monthArray[time.getMonth()] + ' ' + time.getFullYear();

@@ -39,6 +39,11 @@ export const RESOURCE = {
             message: 'მომხმარებელი ან პაროლი არასწორია, სცადეთ თავიდან'
         },
         {
+            code: -2,
+            type: 'ERROR',
+            message: 'შეცდომა სესიის აქტივაციის დროს',
+        },
+        {
             code: -1,
             type: 'ERROR',
             message: 'შეცდომა, გთხოვთ გადატვირთოდ აპლიკაცია'
@@ -49,7 +54,8 @@ export const RESOURCE = {
             ROOT : 'http://www.magtifun.ge',
             LOGIN : '/index.php?lang=en&page=11',
             CHECK : '/index.php?lang=en&page=2',
-            RESTORE : '/index.php?lang=ge&page=14'
+            RESTORE : '/index.php?lang=ge&page=14',
+            SEND : '/scripts/sms_send.php'
         }
     }
 };
