@@ -10,10 +10,7 @@
     <span class="h-100"></span>
   </div>
   <div #contentReference class="content w-100 content-column-start">
-    <div *ngFor="let message of composeMessageChain.messages; let i = index" [ngClass]="{'inbox' : message.inbox}" class="message content-column-start">
-      <span *ngIf="i !== 0 && message.decoratedTime !== composeMessageChain.messages[composeMessageChain.messages.indexOf(message) - 1].decoratedTime" class="m-time">{{ message.decoratedTime }}</span>
-      <p class="m-text">{{ message.body }}</p>
-    </div>
+
   </div>
   <div class="footer w-100 content-row-start bg-secondary-red">
     <div class="message-box content-row-start bg-secondary-black">

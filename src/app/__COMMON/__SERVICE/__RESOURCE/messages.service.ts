@@ -73,6 +73,7 @@ export class MessagesService {
     }
     private convertToMessagesChain(receivedMessages: any[], sentMessages: any[], contactList: ContactModel[]): MessageChainModel[] {
         const messages: MessageChainModel[] = [];
+        console.log(receivedMessages);
         receivedMessages = receivedMessages.filter(message => message.address.length >= 9 && /^[0-9 ()+-]+$/.test(message.address));
         sentMessages = sentMessages.filter(message => message.address.length >= 9 && /^[0-9 ()+-]+$/.test(message.address));
 

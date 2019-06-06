@@ -35,7 +35,11 @@ export class AuthPage {
     if (this.validateCredentialMethod(username, password) && !this.inPageProcessState) {
       this.inPageProcessState = true;
       this.magticomService.login(username, password)
-          .then(() => this.router.navigate(['home']))
+          .then(() => {
+            this.magticomService.update()
+                .then(() => this.router.navigate(['home']))
+                .catch((err) => this.notificationService.setNotification(err));
+          })
           .catch(errorCode => {
             this.inPageProcessState = false;
             this.notificationService.setNotification(errorCode);

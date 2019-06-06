@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
 import { MessagesService } from '../__COMMON/__SERVICE/__RESOURCE/messages.service';
 import { ContactModel } from '../__COMMON/__MODEL/contact.model';
 import { ContactsService } from '../__COMMON/__SERVICE/__RESOURCE/contacts.service';
@@ -8,6 +8,7 @@ import { StatusBarService } from '../__COMMON/__SERVICE/__NATIVE/status-bar.serv
 import { MagticomService} from '../__COMMON/__SERVICE/__API/magticom.service';
 import { UINotificationService } from '../__COMMON/__COMPONENT/ui-notification/ui-notification.service';
 import { homeComposerAnimation } from './home.animation';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-home',
@@ -39,16 +40,30 @@ export class HomePage implements OnInit {
     constructor(private contactsService: ContactsService,
                 private messagesService: MessagesService,
                 private renderer: Renderer2,
+                private router: Router,
                 private magticomService: MagticomService,
                 private statusBarService: StatusBarService,
                 private notificationService: UINotificationService) {}
 
     public ngOnInit(): void {
+        this.magticomService.getBalance().subscribe(balance => {
+            this.currentBalance = balance;
+        });
+        this.magticomService.update()
+            .catch(errorCode => {
+                if (errorCode === -2) {
+                    this.notificationService.setNotification(errorCode);
+                    this.magticomService.logout().then(() => this.router.navigate(['auth']));
+                } else if (errorCode === -1) {
+                    this.notificationService.setNotification(errorCode);
+                } else if (errorCode === 0) {
+                    this.notificationService.setNotification(errorCode);
+                }
+            });
         this.statusBarService.statusBarFillLightRedMethod();
         this.homeChildPagesArrayFillMethod();
         this.carouselRailConfigMethod();
         this.homeFetchResources().catch(() => {});
-        this.magticomService.getBalance();
     }
     public ionViewWillEnter() {
         this.statusBarService.statusBarFillLightRedMethod();

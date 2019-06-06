@@ -28,7 +28,7 @@ export class OptionsComponent implements OnInit {
   public logout(): void {
     if (!this.inPageProcessState) {
       this.inPageProcessState = true;
-      this.magticomService.magticomLogoutMethod().then(() => {
+      this.magticomService.logout().then(() => {
         this.router.navigate(['auth']);
         this.inPageProcessState = false;
       });
