@@ -29,19 +29,16 @@ export class ComposerComponent implements OnInit, AfterViewChecked {
 
   public ASSETS = RESOURCE.ASSETS;
   public messageText: string = '';
+  public renderedMessagesArray: MessageModel[] = [];
 
   constructor(private platform: Platform,
               private magticomService: MagticomService,
               private notificationService: UINotificationService) { }
 
-  ngOnInit() {}
-  ngAfterViewChecked(): void {
-    try {
-      this.contentReference.nativeElement.scrollTop = this.contentReference.nativeElement.scrollHeight;
-    } catch (e) {
-      // Nothing To Do Here
-    }
+  ngOnInit() {
+
   }
+  ngAfterViewChecked(): void {}
 
   public closeComposerMethod(): void {
     this.closeComposer.emit(false);
@@ -50,5 +47,14 @@ export class ComposerComponent implements OnInit, AfterViewChecked {
     this.magticomService.send(this.composeMessageChain.recipient.formattedPhoneNumber, this.messageText, this.currentBalance)
         .then(() => {})
         .catch(errorCode => this.notificationService.setNotification(errorCode));
+  }
+  public loadMessages(): void {
+    const startIndex = this.renderedMessagesArray ? this.composeMessageChain.messages
+        .indexOf(this.renderedMessagesArray[this.renderedMessagesArray.length - 1]) : this.composeMessageChain.messages.length - 1;
+    const endIndex = this.composeMessageChain.messages[startIndex - 50] ?
+        startIndex - 50 : 0;
+    for (let i = startIndex; i >= endIndex; i--) {
+      this.renderedMessagesArray.push(this.composeMessageChain.messages[i]);
+    }
   }
 }
